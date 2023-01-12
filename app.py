@@ -53,20 +53,16 @@ def register():
 
 @app.route('/login')
 def login():
-     # Here we use a class of some kind to represent and validate our
-    # client-side form data. For example, WTForms is a library that will
-    # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
     if form.validate_on_submit():
-        # Login and validate the user.
-        # user should be an instance of your `User` class
+        #finish validation here
         login_user(user)
 
         flask.flash('Logged in successfully.')
 
         next = flask.request.args.get('next')
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
+        
+        #check the url here
         if not is_safe_url(next):
             return flask.abort(400)
 
@@ -148,7 +144,7 @@ def book_add_tag():
     session.add(book)
     session.add(tag)
     session.commit()
-    return "okay"
+    return "Tag added to book"
 
 @app.route('/book', methods=['DELETE'])
 def book_deletion():
@@ -165,7 +161,7 @@ def book_deletion():
 # @app.route('/checkout')
 # @login_required
 # def get_checkout():
-#     return "WOW YOU JUST BOUGHT: BLUH"
+#     return "Thank you for purchasing: (items)"
 
 # @app.route('/order')
 # @login_required
